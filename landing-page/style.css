@@ -2,43 +2,76 @@
 
 body {
     font-family: Roboto, sans-serif;
+    /* Using 'min-height: 100vh' is more optimal than 'height: 100vh'*/
 
+    /* 'height: 100vh' locks the body to the exact size of the screen
+    * And the content overflows if it goes down from that exact screen size */
+    /* height: 100vh; */
 
-    height: 100vh;
+    /* 'min-height: 100vh' stretches according to the content
+    *It prevents the overflow of the content
+    *We are making sure that height should be at least the full viewport but it can grow/strech more if there is more content */
+    min-height: 100vh;
+    
+    /* We can understand the difference by giving border when on of the property('height' or 'min-height' is active */
+    /* border: 12px solid hotpink; */
+
     margin: 0px;
+
+    display: flex;
+    /* Using 'flex-direction: column' so that we can 'flex: 1' some sections to make the footer sticks to the bottom of the page */
+    flex-direction: column;
 }
 
-/* Every Redable content will go inside the container div.
-* This will help us center every section on the layout.
+/* Every Readable content will go inside the '.container' div.
+* This will help us center every section on the layout on the webpage.
 * We just have to use this selector once and use the '.container' class where ever we want
-* We are using this to restrict the width of the content
-* So that we can align according to the layout we want.
+* We are using this to restrict the width of the content so that it stays within the 'max-width' range
+* And we adjust the layout according to our requirements.
 * For example: Here we wanted all the content of the webpage to be in the center of the body(web view)*/
 .container {
     max-width: 1100px;
+
+    /* To center divs(child) inside the '.container'(parent)*/
     margin: 0 auto;
+
+    /* By using 'width: 100%' we are telling the container that you should own up to that 'max-width: 1100px' and don't shrink according to the content size.
+    * We have to do this here because we  are making the body(parent) a flex container with 'flex-direction: column'
+    *And the default behaviour of flexbox is basing its initial size according to the content (flex-basis: auto).
+    * If we don't use 'width: 100%' then our 'max-width: 1100px' of the '.container' won't work(will be ignored) and the actual '.container' width will become the width of the content which is inside that container.*/
+    width: 100%;
 }
 
+.direction_change_to_grow {
+    /* We are making the section's a flex because we want all the content to stays in the middle of their section when we zoom-out the page.
+    /* We used 'flex-direction: column' to change the main axis
+    * We wanted justfify content property to work veritcally, 
+    * So that the content stays in the middle of the container when we zoom-out the webpage */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
 
-/* ----------------
-Hero section */
-.hero-section {
+/*----------------------------
+Header section */
+.header-section {
     background-color: #1F2937;
     padding-top: 16px;
 }
 
-/* header */
 .header {
     display: flex;
     align-items: center;
-    /* We can either use 'justify-content' or 'flex: 1' to create space
+
+    /* We can either use 'justify-content' on the parent div or 'flex: 1' on the logo to create space between items 
     * But 'flex-grow: 1' is more optimal solution */
     /* justify-content: space-between; */
     padding: 4px;
 }
 
 .logo {
-    /* We can also use 'flex: 1' to make the header grow and shift the links to the right.*/
+    /* Using 'flex: 1' to make the header grow and shift the links to the right.*/
     flex: 1;
     color: #F9FAF8;
     font-size: 24px;
@@ -59,7 +92,12 @@ Hero section */
     font-size: 18px;
 }
 
-/* Hero Section */
+/* ----------------
+Hero section */
+.hero-section {
+    background-color: #1F2937;
+    padding-top: 16px;
+}
 
 .hero-main {
     display: flex;
@@ -111,20 +149,21 @@ Information section */
 .information-section {
     text-align: center;
     color: #1F2937;
-    height: 450px;
+
+    min-height: 450px;
 }
 
 .information-section .title {
     font-weight: 900;
     font-size: 36px;
-    padding: 40px 0;
+    padding-bottom: 40px;
 }
 
 .info-items {
     display: flex;
     justify-content: center;
     gap: 60px;
-    margin: 0 auto;
+    margin-bottom: 40px;
 }
 
 .info-content {
@@ -132,10 +171,17 @@ Information section */
 }
 
 .info-image {
+    /* 'width: 100%' means that try to be as wide as your parent parent container
+    * Which in this case its the image element container only.
+    The meanign of using percentage '%' is that the element will base its size according to its parent container */
+    width: 100%;
+
+    /* The image can shrink as much as it want but cannot grow larger than the 'max-width' size. */
+    max-width: 170px;
     height: 170px;
-    width: 170px;
     border: 4px solid #3882f6;
     border-radius: 18px;
+
 }
 
 /* -----------------
