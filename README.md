@@ -17,10 +17,9 @@ This is the Landing Page project from The Odin Project. I have to make it from s
 - What I added: -
     - In the header we can navigate to my repositories on GitHub, the odin community which I'm part of, and the repository of this project to see the code.   
     - From the hero section we can navigate to my GitHub profile. 
-
     - In the information section I added the link of the repositories which I think are helful for my future self or someone who is on the same path as me.
     - In call to action section I added the link of the resources from 'The Odin Project'. So that someone can navigate there and know about Git and GitHub basics.
 
 - I want add one thing here. This whole project was fun to do. I enjoyed personalizing the page according to my idea. There are a lot of things which will take time to get familiar with, but overall it was a fun project.
-- If we want to check the landing page according to the assignment (without personalization) of the odin project the we can check out the previous to previous commit.
-- P.S. I have to mention this again. If someone is reading this code then don't mind the comments. I like to write things on the spot when I understand something. I write it to keep the things organized and the next time I open the code I can understand the code easily. ^_^
+- If we want to check the landing page according to the assignment (without personalization) of the odin project then we can check out the previous commits.
+- P.S. I have to mention this again. If someone is reading this code then don't mind the comments. I like to write things on the spot when I understand something. I write it to keep the things organized and when next time I open the code I can understand it easily. ^_^

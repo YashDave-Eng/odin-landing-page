@@ -4,48 +4,50 @@ body {
     font-family: Roboto, sans-serif;
     /* Using 'min-height: 100vh' is more optimal than 'height: 100vh'*/
 
-    /* 'height: 100vh' locks the body to the exact size of the screen
+    /* 'height: 100vh' locks the body to the exact size of the visible screen
     * And the content overflows if it goes down from that exact screen size */
     /* height: 100vh; */
 
-    /* 'min-height: 100vh' stretches according to the content
+    /* 'min-height: 100vh' stretches according to the size of the content
     *It prevents the overflow of the content
     *We are making sure that height should be at least the full viewport but it can grow/strech more if there is more content */
     min-height: 100vh;
 
-    /* We can understand the difference by giving border when on of the property('height' or 'min-height' is active */
+    /* We can understand the difference by giving border when one of the property('height' or 'min-height') is active */
     /* border: 12px solid hotpink; */
 
+    /* 'margin: 0' will override the default margin of the body wrapper/element
+    * Will we not see any white space around our main content */
     margin: 0px;
 
+    /* Using 'flex-direction: column' so that we can 'flex: 1' all the sections between header and footer to make them stick to the top and bottom of the page */
     display: flex;
-    /* Using 'flex-direction: column' so that we can 'flex: 1' some sections to make the footer sticks to the bottom of the page */
     flex-direction: column;
 }
 
-/* Every Readable content will go inside the '.container' div.
-* This will help us center every section on the layout on the webpage.
-* We just have to use this selector once and use the '.container' class where ever we want
-* We are using this to restrict the width of the content so that it stays within the 'max-width' range
-* And we adjust the layout according to our requirements.
-* For example: Here we wanted all the content of the webpage to be in the center of the body(web view)*/
+/* Every Readable or main content will go inside the '.container' div.
+* This will help us center all the content inside each section on our layout. 
+* We just have to make this selector once and use the '.container' class inside every section.
+* We are using this to restrict the width of the content so that it stays within the 'max-width' range of our '.container'
+* This will help us to adjust the layout according to our requirements.
+* For example: Here we wanted all the content on the webpage to be in the center of the body(web view)*/
 .container {
     max-width: 1100px;
 
     /* To center divs(child) inside the '.container'(parent)*/
     margin: 0 auto;
 
-    /* By using 'width: 100%' we are telling the container that you should own up to that 'max-width: 1100px' and don't shrink according to the content size.
-    * We have to do this here because we  are making the body(parent) a flex container with 'flex-direction: column'
-    *And the default behaviour of flexbox is basing its initial size according to the content (flex-basis: auto).
+    /* By using 'width: 100%' we are telling the container that you should own up to that 'max-width: 1100px' and don't shrink according to your content size.
+    * We have to do this here because we are making the body(parent) a flex container with 'flex-direction: column'
+    *And the default behaviour of flexbox is basing its initial size according to the size of its content (flex-basis: auto).
     * If we don't use 'width: 100%' then our 'max-width: 1100px' of the '.container' won't work(will be ignored) and the actual '.container' width will become the width of the content which is inside that container.*/
     width: 100%;
 }
 
 .direction_change_to_grow {
-    /* We are making the section's a flex because we want all the content to stays in the middle of their section when we zoom-out the page.
+    /* We are making the all the sections between header and footer a flex because we want all the content to stay in the middle of their section when we zoom-out the page.
     /* We used 'flex-direction: column' to change the main axis
-    * We wanted justfify content property to work veritcally, 
+    * We wanted 'justfify-content: center' property to work veritcally
     * So that the content stays in the middle of the container when we zoom-out the webpage */
     display: flex;
     flex-direction: column;
@@ -66,8 +68,8 @@ body {
     display: flex;
     align-items: center;
 
-    /* We can either use 'justify-content' on the parent div or 'flex: 1' on the logo to create space between items 
-    * But 'flex-grow: 1' is more optimal solution */
+    /* We can either use 'justify-content' on the parent div(flex container) or 'flex: 1' on the logo(flex item) to create space between items 
+    * But 'flex-grow: 1' is more optimal than 'justify-content'*/
     /* justify-content: space-between; */
     padding: 4px;
 }
@@ -101,7 +103,7 @@ body {
     box-sizing: border-box;
     display: flex;
     list-style-type: none;
-    margin: 0px;
+    margin: 0;
     padding: 0;
     gap: 18px;
     align-items: center;
@@ -136,7 +138,8 @@ body {
 .header-links .no-hover {
     /* 'pointer-events: none' is helping not to select the '.profile-image' item of the list
     *It is making the item completely invisible to the mouse cursor
-    *As a result we see no ':hover' on the '.profile-image'*/
+    *As a result we see no ':hover' on the '.profile-image'
+    * We are doing this because hover on the profile image is working weirdly different*/
     pointer-events: none;
 }
 
@@ -191,6 +194,8 @@ body {
 /* Personalized */
 /* --------- */
 .hero-button {
+    /* Since the <a> element is a block so its trying to take all the available width
+    * That's why we are using 'max-width: fit-content' so that it takes the width to fit the content only */
     max-width: fit-content;
 }
 
@@ -225,19 +230,19 @@ body {
 }
 
 /* Context: -
-* I got to know about these property from 'Flexbox tricks' in the resouces of 'CSS-tricks: Flexbox-guide' 
+* I got to know about the working of these properties from the 'Flexbox tricks' portion of 'CSS-tricks: Flexbox-guide' resource. 
 * In that example we had to make a grid of images with list and set all the list items to '40vh'.
-Using 'object-fit' was like a magic and every picture was taking up '40vh' of space without getting squished down
+* Using 'object-fit' worked like magic. Every picture was taking up '40vh' of space without getting squished down to adjust in the in the available space
 *'object-fit: cover' property was croping off any parts which were overflowing out of that '40vh'*/
 .hero-image img {
-    /* The image taking '100%' of the parent height */
+    /* The image taking '100%' of the parent height, which is '230px'*/
     height: 100%;
-    /* The image is taking '100%' of the parent width */
+    /* The image is taking '100%' of the parent width, which is '550px' */
     width: 100%;
 
-    /* 'object-fit: cover' decalration is scalling the image proportionally to fit the parent width & height
+    /* 'object-fit: cover' decalration is scalling the image proportionally from each side to fit the parent width and height ('230px' & '550px') 
     * And neatly cropping off any part which is overflowing
-    * So the image doesn't look squished */
+    * So the image doesn't get squished */
     object-fit: cover;
 
     /* Using the same 'border-radius' to match the parent */
@@ -282,9 +287,9 @@ Using 'object-fit' was like a magic and every picture was taking up '40vh' of sp
 }
 
 .info-image {
-    /* 'width: 100%' means that try to be as wide as your parent parent container
+    /* 'width: 100%' means that "try to be as wide as your parent parent container"
     * Which in this case its the image element container only.
-    The meanign of using percentage '%' is that the element will base its size according to its parent container */
+    The meaning of using percentage '%' is that the element will base its size according to its parent container size*/
     width: 100%;
 
 
@@ -296,6 +301,7 @@ Using 'object-fit' was like a magic and every picture was taking up '40vh' of sp
     /* Personalized */
     /* ---------- */
     border: 4px solid #126737;
+    /* To prevent image squishing */
     object-fit: cover;
     /* ---------- */
 }
@@ -326,9 +332,11 @@ Using 'object-fit' was like a magic and every picture was taking up '40vh' of sp
 .quote-text {
     display: flex;
     justify-content: center;
+    /* Using 'flex-direction: column' here because we don't the quote and the author's name on the same line */
     flex-direction: column;
     height: 400px;
     max-width: 820px;
+
     margin: 0 auto;
     /* Same */
     /* margin-inline: auto; */
@@ -376,6 +384,9 @@ Using 'object-fit' was like a magic and every picture was taking up '40vh' of sp
     align-items: center;
     border-radius: 10px;
     height: 140px;
+    /* We can also use 'min-height' here
+    * There is a little layout error which is letting the text overflow from the container */
+    /* min-height: 140px; */
 
     /* Personalized */
     /* ---------- */
@@ -387,7 +398,7 @@ Using 'object-fit' was like a magic and every picture was taking up '40vh' of sp
 
 /* Personalized */
 /* --------- */
-/* Using this to limit the text width
+/* Using 'max-width' to limit the text width
 * So that it doesn't get too close to the clickable hyperlink  */
 .main-content {
     /* Taking the '70%' of the parent container width  */
